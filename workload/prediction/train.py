@@ -9,10 +9,11 @@ from pandas import read_csv
 from pandas import datetime
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.externals import joblib
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
+#from sklearn.externals import joblib
+import joblib
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import LSTM
 # from keras.callbacks import TensorBoard
 from math import sqrt
 import matplotlib
@@ -21,7 +22,7 @@ from matplotlib import pyplot
 from numpy import array
 
 import numpy as np
-import keras as ks
+import tensorflow.keras as ks
 import pandas as pd
 
 import logging
@@ -241,6 +242,7 @@ model.add(LSTM(n_neurons, batch_input_shape=(n_batch, X.shape[1], X.shape[2]), s
 model.add(Dense(y.shape[1]))
 model.compile(loss='mean_squared_error', optimizer='adam')
 
+nb_epoch = 2
 # fit network
 for i in range(nb_epoch):
     print('start traing epoch %d', i)

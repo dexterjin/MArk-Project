@@ -1,3 +1,4 @@
+
 from time import time
 
 from pandas import DataFrame
@@ -9,9 +10,9 @@ from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
 #from sklearn.externals import joblib
 import joblib
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import LSTM
 # from keras.callbacks import TensorBoard
 from math import sqrt
 import matplotlib
@@ -20,7 +21,7 @@ from matplotlib import pyplot
 from numpy import array
 
 import numpy as np
-import keras as ks
+import tensorflow.keras as ks
 import pandas as pd
 
 import logging
@@ -49,7 +50,7 @@ def inverse_transform(scaler, forecast, current_load):
     return inv_diff
 
 
-model = ks.models.load_model("2_my_model_32.h5")
+model = ks.models.load_model("1_my_model_32.h5")
 scaler = joblib.load("my_scaler.save")
 
 

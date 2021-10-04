@@ -56,7 +56,7 @@ def send_data(args, reader):
             # print(f'Send request after {s} ms')
             time.sleep(s/1000.0)
 
-with open(f'{upper_folder}/workload/tweet_load.csv', 'r') as f:
+with open(f'./tweet_load.csv', 'r') as f:
     args = get_args()
     reader = csv.DictReader(f)
     send_data(args, reader)
