@@ -40,13 +40,17 @@ def get_data():
 
 def send_data(args, reader):
     pool = ThreadPoolExecutor(5000)
-    data = get_data()
+    data = ""
+    #get_data()
 
     for row in reader:
         if reader.line_num > args.timeout:
             break
 
         num = int(int(row['tweets']) * 1.8)
+        num1 = int(row['tweets'])
+        print(f'row[tweets] : {num1}')
+        print(f'num : {num}')
         lam = (60 * 1000.0) / num
         samples = np.random.poisson(lam, num)
         print(f'line: {reader.line_num}; sample_number: {num}')

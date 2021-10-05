@@ -1,4 +1,4 @@
-
+import sys
 from time import time
 
 from pandas import DataFrame
@@ -50,7 +50,7 @@ def inverse_transform(scaler, forecast, current_load):
     return inv_diff
 
 
-model = ks.models.load_model("1_my_model_32.h5")
+model = ks.models.load_model(sys.argv[1]+"_my_model_32.h5")
 scaler = joblib.load("my_scaler.save")
 
 
@@ -72,3 +72,9 @@ Y = scaler.transform(X)
 forecast = forecast_lstm(model, Y)
 forecast_real = inverse_transform(scaler, forecast, current_load)
 print(forecast_real)
+print(len(forecast_real))
+print(sys.argv[1]+"_my_model_32.h5")
+print(type(forecast_real))
+
+for index, value in enumerate(forecast_real):
+    print(index, value)
