@@ -54,6 +54,9 @@ def send_data(args, reader):
         lam = (60 * 1000.0) / num
         samples = np.random.poisson(lam, num)
         print(f'line: {reader.line_num}; sample_number: {num}')
+        print(f'lam : {lam}')
+        print(f'samples : {samples}')
+        print(len(samples))
         for s in samples:
             pool.submit(sender, data)
             # sender(data)

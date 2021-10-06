@@ -242,7 +242,7 @@ model.add(LSTM(n_neurons, batch_input_shape=(n_batch, X.shape[1], X.shape[2]), s
 model.add(Dense(y.shape[1]))
 model.compile(loss='mean_squared_error', optimizer='adam')
 
-nb_epoch = 15
+nb_epoch = 100
 # fit network
 for i in range(nb_epoch):
     print('start traing epoch %d', i)
