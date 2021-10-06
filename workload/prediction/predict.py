@@ -61,8 +61,8 @@ n_epochs = 3
 n_batch = 1 #must be 1 because we want online prediction
 n_neurons = 32
 
-last_step = 2964
-current_load = 2593
+last_step = 3513
+current_load = 4263
 
 X = [[(current_load - last_step)]]
 last_step = current_load
@@ -77,4 +77,4 @@ print(sys.argv[1]+"_my_model_32.h5")
 print(type(forecast_real))
 
 for index, value in enumerate(forecast_real):
-    print(index, value)
+    print(value)
