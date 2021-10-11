@@ -70,7 +70,13 @@ def send_data(timeout, reader):
         if reader.line_num > timeout:
             break
 
-        num = int(int(row['tweets']) * 1.8)
+        # resnet tps : 169/s 
+        # 169*60 = 10140
+        # tweet avg : 3312.91
+        # tweet min : 1
+        # tweet max : 91113
+        # 1/3 정도 수준으로 감소 시키면 적정함 
+        num = int(int(row['tweets']) * 0.3333)
         num1 = int(row['tweets'])
         print(f'row[tweets] : {num1}')
         print(f'num : {num}')
