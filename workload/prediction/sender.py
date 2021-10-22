@@ -16,17 +16,17 @@ import numpy as np
 sqs = boto3.client('sqs')
 
 queue_url = 'https://sqs.us-east-1.amazonaws.com/392434356039/test'
-queue_url_R = 'https://sqs.us-east-1.amazonaws.com/392434356039/alg3_R'
-queue_url_B = 'https://sqs.us-east-1.amazonaws.com/392434356039/alg3_B'
-queue_url_G = 'https://sqs.us-east-1.amazonaws.com/392434356039/alg3_G'
-queue_url_Y = 'https://sqs.us-east-1.amazonaws.com/392434356039/alg3_Y'
-queue_url_S = 'https://sqs.us-east-1.amazonaws.com/392434356039/alg3_S'
+queue_url_R = 'https://sqs.ap-northeast-2.amazonaws.com/661509575906/dexter-test-R'
+queue_url_B = 'https://sqs.ap-northeast-2.amazonaws.com/661509575906/dexter-test-B'
+queue_url_G = 'https://sqs.ap-northeast-2.amazonaws.com/661509575906/dexter-test-G'
+queue_url_Y = 'https://sqs.ap-northeast-2.amazonaws.com/661509575906/dexter-test-Y'
+queue_url_S = 'https://sqs.ap-northeast-2.amazonaws.com/661509575906/dexter-test-S'
 
 global count
 count = 0
 
 
-def sender():
+def sender(data):
     global count
 
     endpoint = ["R", "B", "G", "Y", "S"]
@@ -51,14 +51,14 @@ def sender():
             queue_url = queue_url_S
 
         count += 1
-        #print(f"count {count}")
+#        print(f"count {count}")
         response = sqs.send_message(
             QueueUrl=queue_url,
 #            MessageGroupId='messageGroup1', # for fifo
 
             MessageBody = endpoint[x]) 
-        print("[%s]" %endpoint[x])
-        print(response)
+#        print("[%s]" %endpoint[x])
+#        print(response)
     except Exception as e:
         print(e)
 
@@ -76,7 +76,7 @@ def send_data(timeout, reader):
         # tweet min : 1
         # tweet max : 91113
         # 1/3 정도 수준으로 감소 시키면 적정함 
-        num = int(int(row['tweets']) * 0.3333)
+        num = int(int(row['tweets']) * 3)
         num1 = int(row['tweets'])
         print(f'row[tweets] : {num1}')
         print(f'num : {num}')
@@ -90,6 +90,6 @@ def send_data(timeout, reader):
             pool.submit(sender, data)
             time.sleep(s/1000.0)
 
-with open(f'./tweet_load.csv', 'r') as f:
+with open(f'./tweet_load_10-16.csv', 'r') as f:
     reader = csv.DictReader(f)
-    send_data(reader)
+    send_data(10,reader)
