@@ -112,7 +112,7 @@ with open(f'./tweet_load.csv', 'r') as fr:
     reader = csv.DictReader(fr)
 
     buf2 = ['']
-    with open(f'./tweet_load_predict_5min.csv', 'w') as fw:
+    with open(f'./tweet_load_predict_1min_predict_52.csv', 'w') as fw:
         fw.write("\"time\",\"tweets_predict\"\n")
 
     for row in reader:
@@ -121,8 +121,8 @@ with open(f'./tweet_load.csv', 'r') as fr:
 
         print(f'reader.line_num : {reader.line_num}')
 
-        with open(f'./tweet_load_predict_5min.csv', 'a') as fw:
-            if (reader.line_num-2) % 5 == 0:
+        with open(f'./tweet_load_predict_1min_predict_52.csv', 'a') as fw:
+            if (reader.line_num-2) % 1 == 0:
                 buf2 = ['']
 #                fw.write("\"" + row['time'] +"\"" + "," + row['tweets'] + ":" + str(buf[reader.line_num-1]) + ":" + str(buf[reader.line_num]) + "\n")
                 fw.write("\"" + row['time'] +"\"" + "," + row['tweets'] + "\n")
@@ -139,13 +139,13 @@ with open(f'./tweet_load.csv', 'r') as fr:
                 forecast_real = inverse_transform(scaler, forecast, current_load)
 
                 for index, value in enumerate(forecast_real):
-                    if index > 4:
+                    if index > 0:
                         break
                     buf2.append(int(value))
                 for val in buf2:
                     print(f'buf2 : {val}')
-                print(f'buf2[3] : {buf2[3]}')
+#                print(f'buf2[3] : {buf2[3]}')
 
             else:
-                fw.write("\"" + row['time'] +"\"" + "," + str(buf2[reader.line_num % 5 -2]) + "\n")
+                fw.write("\"" + row['time'] +"\"" + "," + str(buf2[reader.line_num % 1 -2]) + "\n")
 

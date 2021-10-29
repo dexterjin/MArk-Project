@@ -61,7 +61,7 @@ with open(f'./tweet_load.csv', 'r') as fr:
     reader = csv.DictReader(fr)
 
     buf2 = ['']
-    with open(f'./tweet_load_predict_5min.csv', 'w') as fw:
+    with open(f'./tweet_load_predict_5min_shifting.csv', 'w') as fw:
         fw.write("\"time\",\"tweets_predict\"\n")
 
     for row in reader:
@@ -70,7 +70,7 @@ with open(f'./tweet_load.csv', 'r') as fr:
 
         print(f'reader.line_num : {reader.line_num}')
 
-        with open(f'./tweet_load_predict_5min.csv', 'a') as fw:
+        with open(f'./tweet_load_predict_5min_shifting.csv', 'a') as fw:
             if (reader.line_num-2) % 5 == 0:
                 buf2 = ['']
 #                fw.write("\"" + row['time'] +"\"" + "," + row['tweets'] + ":" + str(buf[reader.line_num-1]) + ":" + str(buf[reader.line_num]) + "\n")
