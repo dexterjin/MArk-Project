@@ -141,6 +141,6 @@ with open(f'./tweet_load.csv', 'r') as fr:
                 for val in buf2:
                     print(f'buf2 : {val}')
 #                print(f'buf2[3] : {buf2[3]}')
-                fw.write("\"" + row['time'] +"\"" + "," + str(buf2[5]) + "\n")
+                fw.write("\"" + row['time'] +"\"" + "," + str(buf2[4]) + "\n")
 
 
